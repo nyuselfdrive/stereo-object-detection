@@ -116,6 +116,9 @@ rectification_maps_r = np.load("calibration/zed/rectification_map_right.npy")
 
 cap = cv2.VideoCapture(0)
 
+darknet_image = darknet.make_image(darknet.network_width(netMain),
+                                    darknet.network_height(netMain),3)
+
 while cap.isOpened():
     ret, frame = cap.read()
     if ret:
@@ -123,13 +126,12 @@ while cap.isOpened():
 
         # Split frame into left and right images since the ZED camera 
         #  gives us both images side by side
-        left = frame[0:, 0:frame.shape[1]//2]
-        right = frame[0:, frame.shape[1]//2:]
+        # left = frame[0:, 0:frame.shape[1]//2]
+        # right = frame[0:, frame.shape[1]//2:]
 
-        darknet_image = darknet.make_image(darknet.network_width(netMain),
-                                    darknet.network_height(netMain),3)
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-        frame_resized = cv2.resize(left,
+        frame_resized = cv2.resize(frame_rgb,
                                    (darknet.network_width(netMain),
                                     darknet.network_height(netMain)),
                                    interpolation=cv2.INTER_LINEAR)
