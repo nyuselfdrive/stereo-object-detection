@@ -54,13 +54,13 @@ altNames = None
 
 
 # YOLO parameters
-config="cfg/yolov3.cfg"
-weights="yolov3.weights"
+config="cfg/igvc-yolov3.cfg"
+weights="igvc-yolov3_6000.weights"
 names="data/igvc.names"
 
-netMain = darknet.load_net_custom(configPath.encode(
-            "ascii"), weightPath.encode("ascii"), 0, 1)  # batch size = 1
-metaMain = darknet.load_meta(data.encode("ascii"))
+netMain = darknet.load_net_custom(config.encode(
+            "ascii"), weights.encode("ascii"), 0, 1)  # batch size = 1
+#metaMain = darknet.load_meta(data.encode("ascii"))
 altNames = [x.strip() for x in open(names, 'r').readlines()]
 
 def get_distance(depth_val):
@@ -114,7 +114,7 @@ rectification_maps_r = np.load("calibration/zed/rectification_map_right.npy")
 # newmtx_l, roi_l = cv2.getOptimalNewCameraMatrix(mtx_l,dist_l,(672,376),0)
 # newmtx_r, roi_r = cv2.getOptimalNewCameraMatrix(mtx_r,dist_r,(672,376),0)
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 while cap.isOpened():
     ret, frame = cap.read()
