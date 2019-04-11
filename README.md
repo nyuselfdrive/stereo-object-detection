@@ -3,7 +3,7 @@ Combines object detection and stereo vision to tell where and how far something 
 
 
 ## Installation
----------------
+
 **Install Required dependencies**  
 ```
 $ sudo apt-get update
