@@ -34,3 +34,8 @@ pip3 install -r requirements.txt
 ```
 python3 cam_demo.py
 ```
+
+**Depth viewer**
+```
+python3 depth_viewer.py
+```
